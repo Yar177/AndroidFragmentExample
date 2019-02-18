@@ -1,6 +1,7 @@
 package com.example.android.android_me.ui;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -13,21 +14,38 @@ import com.example.android.android_me.data.AndroidImageAssets;
 
 public class MasterListFragment extends Fragment {
 
-    public MasterListFragment(){
+    OnImageClickListener mCallBack;
 
+    public interface OnImageClickListener{
+        void onImageSelected(int position);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mCallBack = (OnImageClickListener) context;
+        }catch (ClassCastException e){
+            e.printStackTrace();
+        }
+    }
+
+    public MasterListFragment(){
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-        final View rootView = inflater.inflate(R.layout.fragment_master_list, container, false);
+       final View rootView = inflater.inflate(R.layout.fragment_master_list, container, false);
 
-        GridView gridView = (GridView) rootView.findViewById(R.id.image_grid_view);
+       GridView gridView = (GridView) rootView.findViewById(R.id.image_grid_view);
 
        MasterListAdapter masterListAdapter = new MasterListAdapter(getContext(), AndroidImageAssets.getAll());
 
        gridView.setAdapter(masterListAdapter);
+
+
 
        return rootView;
 

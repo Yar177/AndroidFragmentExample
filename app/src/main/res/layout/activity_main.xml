@@ -4,6 +4,6 @@
     android:layout_height="match_parent"
     android:name="com.example.android.android_me.ui.MasterListFragment"
 
-    >
+    android:id="@+id/master_list_fragment">
 
 </fragment>
