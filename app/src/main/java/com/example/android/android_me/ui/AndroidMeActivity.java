@@ -31,12 +31,16 @@ public class AndroidMeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_android_me);
 
+        if (savedInstanceState == null){
+
         BodyPartFragment headPartFragment = new BodyPartFragment();
         headPartFragment.setImageIds(AndroidImageAssets.getHeads());
         headPartFragment.setListIndex(1);
+
         BodyPartFragment bodyPartFragment = new BodyPartFragment();
         bodyPartFragment.setImageIds(AndroidImageAssets.getBodies());
         bodyPartFragment.setListIndex(1);
+
         BodyPartFragment legPartFragment = new BodyPartFragment();
         legPartFragment.setImageIds(AndroidImageAssets.getLegs());
         legPartFragment.setListIndex(1);
@@ -49,5 +53,9 @@ public class AndroidMeActivity extends AppCompatActivity {
                 .add(R.id.body_container, bodyPartFragment)
                 .add(R.id.leg_container, legPartFragment)
                 .commit();
+
+        }
+
+
     }
 }
